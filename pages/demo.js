@@ -1,15 +1,25 @@
-import React from 'react'
-import NoSSR from 'react-no-ssr'
-import CARD from '../components/demo/card'
+import dynamic from 'next/dynamic'
 
-export default class Demo extends React.Component {
-
-  render() {
-    const Loading = () => (<div>Loading...</div>);
-    return (
-        <NoSSR onSSR={<Loading />}>
-            <CARD></CARD>
-        </NoSSR>
-    );
+const Demo = dynamic(
+  {
+    modules: props => {
+      console.dir(props);
+      const components = {
+        Card: import('../components/demo/card'),
+        DropListDemo: import('../components/demo/droplist')
+      }
+      return components
+    },
+    render: (props, { Card, DropListDemo }) => (
+      <>
+        {props.name}
+        <Card />
+        <DropListDemo />
+      </>
+    ),
+    ssr: false,
+    loading: () => <p>...</p>
   }
-}
+)
+
+export default ({ name }) => <Demo name={<div>{name}</div>} />;

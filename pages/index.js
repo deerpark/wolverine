@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
+import Demo from './demo';
 
 export default () => (
   <div>
     <Head title="Home" />
     <Nav />
 
+    <Demo name="Hi" />
     <div className="hero">
       <h1 className="title">Welcome to Next!</h1>
       <p className="description">To get started, edit <code>pages/index.js</code> and save to reload.</p>

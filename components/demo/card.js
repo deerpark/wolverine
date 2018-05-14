@@ -1,5 +1,4 @@
 import React from 'react';
-import NoSSR from 'react-no-ssr'
 import {
   AppCardView,
   AppCardModel,
@@ -11,7 +10,6 @@ import {
   AppCardUser,
 } from '@atlaskit/media-card';
 
-const Loading = () => (<div>Loading...</div>);
 const handleActionWithLoadingStatesClick = (a, handlers) => {
   console.log('clicked on the action', a.title, a);
   handlers.progress();
@@ -77,15 +75,11 @@ const mostOfTheThingsWithPreview = {
 
 };
 
-const CARD = () => (
-  <div>
-    <NoSSR onSSR={<Loading />}>
-      <>
-        <AppCardView newDesign={true} model={mostOfTheThingsWithPreview} onActionClick={handleActionWithLoadingStatesClick} />
-        <AppCardView newDesign={true} model={mostOfTheThingsWithPreview} onActionClick={handleActionWithLoadingStatesClick} />
-      </>
-    </NoSSR>
-  </div>
+const Card = () => (
+  <>
+    <AppCardView newDesign={false} model={mostOfTheThingsWithPreview} onActionClick={handleActionWithLoadingStatesClick} />
+    <AppCardView newDesign={false} model={mostOfTheThingsWithPreview} onActionClick={handleActionWithLoadingStatesClick} />
+  </>
 )
 
-export default CARD
+export default Card

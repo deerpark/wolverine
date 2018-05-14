@@ -4,7 +4,7 @@ import Button from '@atlaskit/button';
 import Item, { ItemGroup } from '@atlaskit/item';
 import DropList from '@atlaskit/droplist';
 
-export default class BasicExample extends PureComponent {
+export default class DropListDemo extends PureComponent {
   state = {
     eventResult: 'Click into and out of the content to trigger event handlers',
   };
