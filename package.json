@@ -1,0 +1,22 @@
+{
+  "name": "lezhin-ranking",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "@atlaskit/button": "^7.2.5",
+    "@atlaskit/dropdown-menu": "^4.0.3",
+    "@zeit/next-sass": "^0.2.0",
+    "axios": "^0.18.0",
+    "express": "^4.14.0",
+    "moment": "^2.22.1",
+    "next": "^6.0.3",
+    "node-sass": "^4.9.0",
+    "rc-slider": "^8.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}

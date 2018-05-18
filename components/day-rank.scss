@@ -1,0 +1,74 @@
+.ranking {
+  &__item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px #e5e5e5 solid;
+    &:last-of-type {
+      border: 0;
+    }
+  }
+  &__thumbnail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+  &__order {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100px;
+    text-align: center;
+    color: #D3182F;
+    z-index: 2;
+    @media only screen and (max-width: 680px) {
+      display: none;
+    }
+  }
+  &__info {
+    padding: 22px;
+  }
+  &__title {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 100;
+    color: rgba(23, 43, 77, .75);
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &__genre {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(23, 43, 77, .75);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &::after {
+      content: ' / '
+    }
+    &:last-of-type::after {
+      content: ''
+    }
+  }
+  &__a {
+    padding-left: 70px;
+    padding-right: 100px;
+    position: relative;
+    min-height: 100px;
+    display: block;
+    &:hover {
+      background-color: #fafafa;
+      text-decoration: none;
+    }
+    @media only screen and (max-width: 680px) {
+      padding-left: 0;
+    }
+  }
+}

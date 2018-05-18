@@ -1,0 +1,16 @@
+.header {
+  position: relative;
+  z-index: 2;
+  min-height: 51px;
+  &__wrap {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  &__logo {
+    max-width: 100%;
+    width: 426px;
+    height: 139px;
+    margin: 0 auto;
+    background: no-repeat url('/static/logo-type-text.svg') center center;
+  }
+}

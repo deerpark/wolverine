@@ -1,0 +1,138 @@
+.contents {
+  padding: 30px 0;
+}
+
+.current {
+  position: sticky;
+  top: 0;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: middle;
+  font-size: 44px;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+  * {
+    vertical-align: middle;
+  }
+  &__date {
+  }
+  &__prev {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+  &__next {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  a {
+    color: #fff;
+  }
+}
+
+.slider {
+  position: sticky;
+  top: 0;
+  margin-top: 30px;
+  height: 28px;
+  max-width: 619px;
+  margin: 0px auto;
+  padding: 4px 30.5px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 36px;
+  .rc-slider {
+    height: 28px;
+    padding: 0;
+    &-rail {
+      height: 28px;
+      background-color: transparent;
+    }
+    &-track {
+      height: 28px;
+      background-color: transparent;
+    }
+    &-handle {
+      width: 53px;
+      height: 28px;
+      margin-left: -26.5px;
+      border-radius: 14px;
+      background: no-repeat url('/static/slider-handle.svg');
+      border: 0;
+      box-shadow: none;
+      margin-top: 0;
+      &:hover,
+      &:focus,
+      &:active {
+        background: no-repeat url('/static/slider-handle-grab.svg');
+      }
+    }
+    &-dot {
+      width: 1px;
+      height: 1px;
+      top: 14px;
+      bottom: auto;
+      border: 0;
+      background-color: #ccc;
+      margin-left: -0.5px;
+      border-radius: 9px;
+      &:first-of-type,
+      &:last-of-type,
+      /* &:nth-child(10n+1) */ {
+        width: 5px;
+        height: 5px;
+        margin-left: -2.5px;
+        top: 11.5px;
+      }
+    }
+  }
+}
+.rc-slider-tooltip {
+  width: 128px;
+  height: 38px;
+  background: no-repeat url('/static/slider-tooltip.svg') center top;
+}
+
+.rc-slider-tooltip-placement-top {
+  padding: 0;
+}
+
+.rc-slider-tooltip-inner {
+  width: 128px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.rc-slider-tooltip-arrow {
+  display: none;
+}
+
+.rc-slider-tooltip-hidden {
+  /* display: block; */
+}
+
+.ranking {
+  max-width: 680px;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  &__list {
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    list-style-type: none;
+    background-color: #ffffff;
+  }
+}
