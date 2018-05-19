@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import moment from 'moment'
-import Layout from '../components/layout'
 import Slider from 'rc-slider'
+import Header from '../components/header'
 import DayRank from '../components/day-rank'
 import './ranking.scss'
 
@@ -87,57 +87,51 @@ class Ranking extends React.Component {
       year: this.props.date.slice(0, 4),
       month: this.props.date.slice(4, 6),
       day: this.props.date.slice(6, 8),
+      value: this.getByYearKeys(this.currentDate.slice(0, 4)).findIndex(key => key === this.currentDate),
       max: this.getByYearKeys(this.props.date.slice(0, 4)).length,
-      data: this.rankData[this.currentDate]
+      data: this.rankData[this.currentDate] ? this.rankData[this.currentDate] : []
     })
   }
 
   render() {
 
     return (
-      <Layout query={this.props.query} title='Wolverine Home'>
-        <div className="contents">
-          <div className="current">
-            <Link
-              href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${this.state.year - 1}0101` }}
-            >
-              <a className="current__prev"><i className="fas fa-arrow-left" /></a>
-            </Link>
-            <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
-            <Link
-              href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${+this.state.year + 1}0101` }}
-            >
-              <a className="current__next"><i className="fas fa-arrow-right" /></a>
-            </Link>
-          </div>
-          <div className="slider">
-            <Slider
-              value={this.state.value}
-              min={0}
-              max={this.state.max - 1}
-              onChange={this.onSliderChange}
-              // onAfterChange={this.onAfterChange}
-              // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
-              dots={true}
-            // marks={{'1': '1월', '100': '12월'}}
-            />
-          </div>
-          <div className="ranking" ref="rankingEl">
-            <ul className="ranking__list">
-              {<DayRank data={this.state.data} comics={this.comics} />}
-            </ul>
-          </div>
+      <>
+      <Header query={this.props.query} />
+      <div className="contents">
+        <div className="current">
+          <Link
+            href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${this.state.year - 1}0101` }}
+          >
+            <a className="current__prev"><i className="fas fa-chevron-left" /></a>
+          </Link>
+          <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
+          <Link
+            href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${+this.state.year + 1}0101` }}
+          >
+            <a className="current__next"><i className="fas fa-chevron-right" /></a>
+          </Link>
         </div>
-      </Layout>
+        <div className="slider">
+          <Slider
+            value={this.state.value}
+            min={0}
+            max={this.state.max - 1}
+            onChange={this.onSliderChange}
+            // onAfterChange={this.onAfterChange}
+            // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
+            dots={true}
+          // marks={{'1': '1월', '100': '12월'}}
+          />
+        </div>
+        <div className="ranking" ref="rankingEl">
+          <ul className="ranking__list">
+            {<DayRank data={this.state.data} comics={this.comics} lang={this.props.lang} />}
+          </ul>
+        </div>
+      </div>
+      </>
     );
-  }
-}
-
-Ranking.defaultProps = {
-  query: {
-    lang: 'ko-KR',
-    adult: 'all',
-    date: '20161109'
   }
 }
 

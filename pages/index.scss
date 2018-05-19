@@ -1,0 +1,10 @@
+.welcome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background: no-repeat url('/static/welcome.svg') 50% 25%;
+  background-size: contain;
+}

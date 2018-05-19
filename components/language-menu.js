@@ -10,9 +10,9 @@ const getLanguageItem = (query) => {
   query = query || {}
   query.adult = query.adult || 'all'
   query.date = query.date || '20161109'
-  const lang = LANG.map(lang => {
+  const lang = LANG.map((lang, index) => {
     const isDisabled = query.lang === lang.value ? 'isDisabled' : ''
-    return <DropdownItem className={isDisabled} href={`/ranking/${lang.value}/${query.adult}/${query.date}`}>{lang.label}</DropdownItem>
+    return <DropdownItem className={isDisabled} href={`/ranking/${lang.value}/${query.adult}/${query.date}`} key={index}>{lang.label}</DropdownItem>
   })
   return lang
 };
