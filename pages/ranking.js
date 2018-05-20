@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import moment from 'moment'
+import ReactSwipeEvents from 'react-swipe-events'
 import Slider from 'rc-slider'
 import Header from '../components/header'
 import DayRank from '../components/day-rank'
@@ -32,7 +33,8 @@ class Ranking extends React.Component {
     month: moment().format('MM'),
     day: moment().format('DD'),
     max: 365,
-    data: []
+    data: [],
+    load: true
   }
 
   static async getInitialProps({ query }) {
@@ -72,8 +74,9 @@ class Ranking extends React.Component {
   }
 
   getByYearKeys = year => {
-    const regexp = new RegExp(`^(${year})+`)
-    return this.rankDatakeys.filter(day => regexp.test(day))
+    /* const regexp = new RegExp(`^(${year})+`)
+    return this.rankDatakeys.filter(day => regexp.test(day)) */
+    return this.rankDatakeys.sort()
   }
 
   componentWillMount() {
@@ -93,44 +96,81 @@ class Ranking extends React.Component {
     })
   }
 
+  componentDidMount() {
+    const type = localStorage.getItem('__lz__ranking.type')
+    const contents = document.querySelector('.contents').classList
+    const toggleBtn = document.querySelector('.fas').classList
+    if (type) {
+      toggleBtn.remove('fa-th-list')
+      toggleBtn.remove('fa-th-large')
+      toggleBtn.add(`fa-th-${type === 'list' ? type : 'large'}`)
+      contents.remove('type-list')
+      contents.remove('type-grid')
+      contents.add(`type-${type}`)
+    } else {
+      toggleBtn.add(`fa-th-large`)
+      contents.add(`type-grid`)
+      localStorage.setItem('__lz__ranking.type', 'grid')
+    }
+    this.setState({
+      load: false
+    })
+  }
+
+  handlePrevDay = () => {
+    const value = this.state.value === 0 ? 0 : this.state.value - 1
+    this.onSliderChange(value)
+  }
+
+  handleNextDay = () => {
+    const value = this.state.value === this.state.max ? this.state.max : this.state.value + 1
+    this.onSliderChange(value)
+  }
+
+  handleOnSwipedLeft = (e, originX, x) => {
+    originX + 100 < x && this.handlePrevDay()
+    
+  }
+
+  handleOnSwipedRight = (e, originX, x) => {
+    originX - 100 > x && this.handleNextDay()
+  }
+
   render() {
 
     return (
-      <>
-      <Header query={this.props.query} />
-      <div className="contents">
-        <div className="current">
-          <Link
-            href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${this.state.year - 1}0101` }}
-          >
-            <a className="current__prev"><i className="fas fa-chevron-left" /></a>
-          </Link>
-          <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
-          <Link
-            href={{ pathname: `/ranking/${this.props.lang}/${this.props.adult}/${+this.state.year + 1}0101` }}
-          >
-            <a className="current__next"><i className="fas fa-chevron-right" /></a>
-          </Link>
+      <ReactSwipeEvents
+        onSwipedLeft={this.handleOnSwipedRight}
+        onSwipedRight={this.handleOnSwipedLeft}
+      >
+        <div>
+          <Header query={this.props.query} />
+          <div className="contents">
+            <div className="current">
+              <a className="current__prev" onClick={this.handlePrevDay}><i className="fas fa-chevron-left" /></a>
+              <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
+              <a className="current__next" onClick={this.handleNextDay}><i className="fas fa-chevron-right" /></a>
+            </div>
+            <div className="slider">
+              <Slider
+                value={this.state.value}
+                min={0}
+                max={this.state.max - 1}
+                onChange={this.onSliderChange}
+                // onAfterChange={this.onAfterChange}
+                // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
+                dots={true}
+              // marks={{'1': '1월', '100': '12월'}}
+              />
+            </div>
+            <div className={`ranking load load-${this.state.load || 'false'}`} ref="rankingEl">
+              <ul className="ranking__list">
+                {<DayRank data={this.state.data} comics={this.comics} lang={this.props.lang} />}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="slider">
-          <Slider
-            value={this.state.value}
-            min={0}
-            max={this.state.max - 1}
-            onChange={this.onSliderChange}
-            // onAfterChange={this.onAfterChange}
-            // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
-            dots={true}
-          // marks={{'1': '1월', '100': '12월'}}
-          />
-        </div>
-        <div className="ranking" ref="rankingEl">
-          <ul className="ranking__list">
-            {<DayRank data={this.state.data} comics={this.comics} lang={this.props.lang} />}
-          </ul>
-        </div>
-      </div>
-      </>
+      </ReactSwipeEvents>
     );
   }
 }

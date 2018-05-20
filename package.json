@@ -17,6 +17,7 @@
     "node-sass": "^4.9.0",
     "rc-slider": "^8.6.1",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-swipe-events": "^1.0.3"
   }
 }

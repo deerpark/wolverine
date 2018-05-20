@@ -15,11 +15,25 @@ const links = [
   link.key = `nav-link-${link.href}-${link.label}`
   return link
   })
+
+const handleToggleType = (e) => {
+  const contents = document.querySelector('.contents').classList
+  const currentTarget = e.currentTarget.querySelector('.fas').classList
+  const type = currentTarget.contains('fa-th-list') ? 'grid' : 'list'
+  currentTarget.remove('fa-th-list')
+  currentTarget.remove('fa-th-large')
+  currentTarget.add(`fa-th-${type === 'list' ? type : 'large'}`)
+  contents.remove('type-list')
+  contents.remove('type-grid')
+  contents.add(`type-${type}`)
+  localStorage.setItem('__lz__ranking.type', type)
+}
       
 const Nav = ({ query }) => (
   <nav className="nav">
     <ul>
       <li className="nav__left">
+        <a className="link" onClick={handleToggleType}><i className="fas" /></a>
         <Link prefetch href="/">
           <a className="link hidden"><i className="fas fa-home" /></a>
         </Link>
