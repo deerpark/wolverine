@@ -11,6 +11,11 @@ export default class MyDocument extends Document {
     return langCode.slice(0, 2)
   }
 
+  getJpKrCode = (lang) => {
+    const langCode = lang && lang !== 'en-US' ? lang : 'ko-KR'
+    return langCode.slice(3, 5).toLowerCase()
+  }
+
   render() {
     return (
       <html lang={this.getLangCode(this.props.query.lang)}>
@@ -23,6 +28,7 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
           <link rel="icon" href="/static/favicon.ico" />
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossOrigin="anonymous" />
+          <link rel="stylesheet" href={`https://fonts.googleapis.com/earlyaccess/notosans${this.getJpKrCode(this.props.query.lang)}.css`} />
           <link rel="stylesheet" href="/static/reset.css" />
           <link rel="stylesheet" href="/static/slider.css" />
           <link rel="stylesheet" href="/_next/static/style.css" />

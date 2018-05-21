@@ -1,7 +1,4 @@
 .ranking {
-  &__item {
-    transition: 0.3s all;
-  }
 }
 
 .type-list {
@@ -24,6 +21,9 @@
       background-size: cover;
       z-index: 1;
     }
+    &__summary {
+      display: none;
+    }
     &__order {
       position: absolute;
       top: 0;
@@ -36,9 +36,6 @@
       text-align: center;
       color: #D3182F;
       z-index: 2;
-      @media only screen and (max-width: 680px) {
-        display: none;
-      }
     }
     &__info {
       padding: 22px;
@@ -76,7 +73,27 @@
         background-color: #fafafa;
         text-decoration: none;
       }
-      @media only screen and (max-width: 680px) {
+    }
+    @media only screen and (max-width: 480px) {
+      &__thumbnail {
+        width: 80px;
+      }
+      &__order {
+        display: none;
+      }
+      &__info {
+        padding: 10px 22px;
+      }
+      &__title {
+        padding-top: 10px;
+        font-size: 24px;
+      }
+      &__genre {
+        font-size: 8px;
+      }
+      &__a {
+        padding-right: 80px;
+        min-height: 80px;
         padding-left: 0;
       }
     }
@@ -111,6 +128,17 @@
       &:nth-of-type(4n) {
         margin-right: 0;
       }
+      &:hover {
+        .ranking__summary {
+          bottom: -50px;
+        }
+        .ranking__info {
+          bottom: 0;
+        }
+        .ranking__thumbnail {
+          transform: scale(1.2);
+        }
+      }
     }
     &__order {
       position: absolute;
@@ -137,6 +165,7 @@
       }
     }
     &__thumbnail {
+      transition: 1s cubic-bezier(0,.98,.02,.98);
       position: absolute;
       top: 0;
       right: 0;
@@ -147,16 +176,29 @@
       background-position: 50% 50%;
       z-index: 1;
     }
-    &__info {
+    &__summary {
       position: absolute;
       bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      z-index: 2;
+      color: rgba(255, 255, 255, .9);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 1);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+    &__info {
+      position: absolute;
+      bottom: -50px;
       left: 0;
       right: 0;
       box-sizing: border-box;
       padding: 10px;
       z-index: 3;
-      border-top: 1px rgba(0, 0, 0, .1) solid;
-      background-color: rgba(0, 0, 0, .4);
+      border-top: 1px rgba(61, 22, 22, 0.15) solid;
+      background-color: rgba(0, 0, 0, .3);
       color: rgba(255, 255, 255, .9);
       a {
         color: rgba(255, 255, 255, .4);
@@ -169,6 +211,7 @@
       overflow: hidden;
       font-size: 14px;
       line-height: 1.2;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 1)
     }
     &__genres {
       display: block;
@@ -178,6 +221,7 @@
       font-size: 11px;
       line-height: 1.2;
       opacity: 0.5;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 1)
     }
     &__genre {
       &::after {
@@ -189,26 +233,44 @@
     }
     @media only screen and (max-width: 480px) {
       &__item {
-        width: calc(50% - 5px);
-
-        &:nth-of-type(4n-2) {
-          width: calc(50% - 5px);
-        }
-        &:nth-of-type(4n-1) {
-          width: calc(50% - 5px);
+        width: calc(50%);
+        margin-bottom: 0;
+        margin-right: 0;
+        border-radius: 0;
+        
+        &:nth-of-type(2n-1) {
+          width: calc(50%);
+          border-top: 0;
+          border-right: 0;
         }
         &:nth-of-type(2n) {
+          width: calc(50%);
           margin-right: 0;
+          border-top: 0;
+        }
+        &:nth-of-type(1) {
+          border-top: 1px solid #9e0b0b;
+          border-radius: 15px 0 0 0;
+        }
+        &:nth-of-type(2) {
+          border-top: 1px solid #9e0b0b;
+          border-radius: 0 15px 0 0;
+        }
+        &:nth-of-type(19) {
+          border-radius: 0 0 0 15px;
+        }
+        &:nth-of-type(20) {
+          border-radius: 0 0 15px 0;
         }
       }
       &__info {
-        padding: 5px;
+        padding: 3px 5px;
       }
       &__title {
-        font-size: 12px;
+        font-size: 11px;
       }
       &__genres {
-        font-size: 9px;
+        font-size: 8px;
       }
     }
   }

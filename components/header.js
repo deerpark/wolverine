@@ -1,11 +1,11 @@
 import Nav from './nav'
 import './header.scss'
 
-const Header = ({ query }) => (
-    <div className="header">
+const Header = ({ query, handleClickToLoad }) => (
+    <div className="header__inner">
         <nav className="header__wrap">
-            <Nav query={query} />
-            <div className={'header__logo'}></div>
+            <Nav handleClickToLoad={handleClickToLoad} query={query} />
+            <h1 className="header__logo"><span className="header__text">레진차트</span></h1>
         </nav>
     </div>
 )

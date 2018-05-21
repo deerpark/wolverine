@@ -6,27 +6,28 @@ const LANG = [
   { value: 'en-US', label: 'US' }
 ]
 
-const getLanguageItem = (query) => {
+const getLanguageItem = (query, handleClickToLoad) => {
   query = query || {}
   query.adult = query.adult || 'all'
   query.date = query.date || '20161109'
   const lang = LANG.map((lang, index) => {
     const isDisabled = query.lang === lang.value ? 'isDisabled' : ''
-    return <DropdownItem className={isDisabled} href={`/ranking/${lang.value}/${query.adult}/${query.date}`} key={index}>{lang.label}</DropdownItem>
+    return <DropdownItem className={isDisabled} onClick={handleClickToLoad} href={`/ranking/${lang.value}/${query.adult}/${query.date}`} key={index}>{lang.label}</DropdownItem>
   })
   return lang
 };
 
-export default ({ query }) =>
+export default ({ query, handleClickToLoad }) =>
   <>
     <DropdownMenu
-      trigger={<i className="link fas fa-language" tabIndex="0" />}
+      trigger={<i className="link fas fa-language" />}
       triggerType="default"
       shouldFlip={true}
       position="bottom right"
+      className="select-lang"
     >
       <DropdownItemGroup title="Language">
-        {getLanguageItem(query)}
+        {getLanguageItem(query, handleClickToLoad)}
       </DropdownItemGroup>
     </DropdownMenu>
   </>

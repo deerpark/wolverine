@@ -15,6 +15,7 @@ export default ({data, comics, lang}) => {
         <a className="ranking__a" href={`https://www.lezhin.com/${langCode}/comic/${comic.alias}`} target="_blank">
         <div className="ranking__order">{index + 1}</div>
         <div className="ranking__thumbnail" style={{ backgroundImage: `url(${imageUrl(comic.id, index)})` }}></div>
+        <div className="ranking__summary">{comic.title}</div>
         <div className="ranking__info">
           <div className="ranking__title">{comic.title}</div>
           <div className="ranking__genres">{genreList}</div>

@@ -6,6 +6,7 @@ import ReactSwipeEvents from 'react-swipe-events'
 import Slider from 'rc-slider'
 import Header from '../components/header'
 import DayRank from '../components/day-rank'
+import Ripple from '../components/ripple'
 import './ranking.scss'
 
 const DATE = {
@@ -26,6 +27,11 @@ const getDate = date => ({
 const getTextFromDate = text => `${text.year}년 ${text.month}월 ${text.day}일`
 
 class Ranking extends React.Component {
+
+  constructor() {
+    super()
+    this.handleClickToLoad = this.handleClickToLoad.bind(this)
+  }
 
   state = {
     value: 1,
@@ -99,7 +105,7 @@ class Ranking extends React.Component {
   componentDidMount() {
     const type = localStorage.getItem('__lz__ranking.type')
     const contents = document.querySelector('.contents').classList
-    const toggleBtn = document.querySelector('.fas').classList
+    const toggleBtn = document.querySelector('.toggl-view .fas').classList
     if (type) {
       toggleBtn.remove('fa-th-list')
       toggleBtn.remove('fa-th-large')
@@ -114,6 +120,12 @@ class Ranking extends React.Component {
     }
     this.setState({
       load: false
+    })
+  }
+
+  handleClickToLoad = () => {
+    this.setState({
+      load: true
     })
   }
 
@@ -139,38 +151,47 @@ class Ranking extends React.Component {
   render() {
 
     return (
+      <div id="ranking">
       <ReactSwipeEvents
         onSwipedLeft={this.handleOnSwipedRight}
         onSwipedRight={this.handleOnSwipedLeft}
       >
-        <div>
-          <Header query={this.props.query} />
+        <div className={`container load load-${this.state.load || 'false'}`}>
+          <div className="header">
+            <Header handleClickToLoad={this.handleClickToLoad} query={this.props.query} />
+            <div className="control">
+              <div className="control__inner">
+                <div className="current">
+                  <a className="current__prev" onClick={this.handlePrevDay}><i className="fas fa-chevron-left" /></a>
+                  <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
+                  <a className="current__next" onClick={this.handleNextDay}><i className="fas fa-chevron-right" /></a>
+                </div>
+                <div className="slider">
+                  <Slider
+                    value={this.state.value}
+                    min={0}
+                    max={this.state.max - 1}
+                    onChange={this.onSliderChange}
+                    // onAfterChange={this.onAfterChange}
+                    // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
+                    dots={true}
+                  // marks={{'1': '1월', '100': '12월'}}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="contents">
-            <div className="current">
-              <a className="current__prev" onClick={this.handlePrevDay}><i className="fas fa-chevron-left" /></a>
-              <span className="current__date">{`${this.state.year}. ${this.state.month}. ${this.state.day}`}</span>
-              <a className="current__next" onClick={this.handleNextDay}><i className="fas fa-chevron-right" /></a>
-            </div>
-            <div className="slider">
-              <Slider
-                value={this.state.value}
-                min={0}
-                max={this.state.max - 1}
-                onChange={this.onSliderChange}
-                // onAfterChange={this.onAfterChange}
-                // tipFormatter={(v) => getTextFromDate(getDate(this.getByYearKeys(this.state.year)[v]))}
-                dots={true}
-              // marks={{'1': '1월', '100': '12월'}}
-              />
-            </div>
-            <div className={`ranking load load-${this.state.load || 'false'}`} ref="rankingEl">
+            <div className="ranking">
               <ul className="ranking__list">
                 {<DayRank data={this.state.data} comics={this.comics} lang={this.props.lang} />}
               </ul>
             </div>
           </div>
+          <Ripple />
         </div>
       </ReactSwipeEvents>
+      </div>
     );
   }
 }

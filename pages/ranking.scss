@@ -1,22 +1,45 @@
-
 .load {
-  transition: 0.3s all;
   &-true {
-    opacity: 0;
+    .ranking {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    .current {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    .slider {
+      transform: translateY(30px);
+      opacity: 0;
+    }
   }
   &-false {
-    opacity: 1;
+    .ranking,
+    .current,
+    .slider {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 
+.contents {
+  padding-top: 200px;
+}
+
+.ranking {
+  position: relative;
+  z-index: 1;
+  transition: 1s cubic-bezier(0,.98,.02,.98);
+}
+
 .current {
-  position: sticky;
-  top: 0;
+  transition: 1s cubic-bezier(0,.98,.02,.98);
   max-width: 680px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: middle;
+  align-items: center;
   font-size: 44px;
   line-height: 50px;
   color: #fff;
@@ -28,14 +51,41 @@
     vertical-align: middle;
   }
   &__date {
+    white-space: nowrap;
   }
   &__prev {
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 0;
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: no-repeat url('/static/chevron.svg') 15px 5px;
+    &:active,
+    &:focus {
+      transform: scale(0.9);
+    }
+    @media only screen and (max-width: 480px) {
+      margin-left: -10px;
+    }
   }
   &__next {
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 0;
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: no-repeat url('/static/chevron.svg') -35px 5px;
+    &:active,
+    &:focus {
+      transform: scale(0.9);
+    }
+    @media only screen and (max-width: 480px) {
+      margin-right: -10px;
+    }
   }
   a {
     color: #fff;
@@ -43,17 +93,15 @@
 }
 
 .slider {
-  position: sticky;
-  top: 0;
+  transition: 1s cubic-bezier(0,.98,.02,.98);
   margin-top: 30px;
   height: 28px;
-  max-width: 619px;
+  max-width: 250px;
   margin: 0px auto;
   padding: 4px 30.5px;
   margin-bottom: 10px;
   background-color: #ffffff;
   border-radius: 36px;
-  transition: 0.3s all;
   .rc-slider {
     height: 28px;
     padding: 0;
@@ -74,7 +122,6 @@
       border: 0;
       box-shadow: none;
       margin-top: 0;
-      transition: 0.3s all;
       &:hover,
       &:focus,
       &:active {
@@ -148,7 +195,6 @@
       position: relative;
       list-style-type: none;
       background-color: #ffffff;
-      transition: 0.3s all;
     }
   }
 }
@@ -157,6 +203,13 @@
     border-radius: 3px;
     .rc-slider-handle {
       border-radius: 3px;
+    }
+    @media only screen and (max-width: 480px) {
+      border-radius: 15px;
+      margin-bottom: 30px;
+      .rc-slider-handle {
+        border-radius: 20px;
+      }
     }
   }
   .ranking {
@@ -168,7 +221,6 @@
       list-style-type: none;
       box-sizing: border-box;
       border-radius: 3px;
-      transition: 0.3s all;
     }
   }
 }

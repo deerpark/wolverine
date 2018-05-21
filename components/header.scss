@@ -1,7 +1,10 @@
-.header {
+.header__inner {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   min-height: 51px;
+}
+
+.header{
   &__wrap {
     max-width: 680px;
     margin: 0 auto;
@@ -11,6 +14,103 @@
     width: 426px;
     height: 139px;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  &__text {
+    transition: .5s cubic-bezier(0,.98,.02,.98);
+    width: 426px;
+    height: 426px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-top: -213px;
+    margin-left: -213px;
     background: no-repeat url('/static/logo-type-text.svg') center center;
+    font-size: 0;
+    color: transparent;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  height: 200px;
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(208,2,27,0) 20%, rgba(208,2,27,.8) 100%);
+  .control {
+    position: relative;
+    z-index: 3;
+  }
+  .control__inner {
+    max-width: 680px;
+    padding: 0 10px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    .current {
+      line-height: 85px;
+      margin-bottom: 0;
+      &__date {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+      }
+      &__prev {
+        position: relative;
+        z-index: 2;
+      }
+      &__next {
+        position: relative;
+        z-index: 2;
+      }
+    }
+    .slider {
+      border: 1px solid rgba(0, 0, 0, .15);
+      box-shadow: 0 3px 7px rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+.load {
+  &-true {
+    .header__text {
+      animation: wobble-hor-bottom 0.8s both;
+    }
+    .header__logo {
+      height: 139px;
+      opacity: 1;
+    }
+  }
+  &-false {
+    .header__logo {
+      height: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
   }
 }

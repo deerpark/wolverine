@@ -1,5 +1,8 @@
 .nav {
+  transition: 1s cubic-bezier(0,.98,.02,.98);
   padding: 10px;
+  position: relative;
+  z-index: 3;
   ul {
     margin: 0;
     padding: 0;
@@ -29,6 +32,7 @@
     flex: 1 1 150px;
     a{
       font-size: 18px !important;
+      cursor: pointer;
     }
   }
   &__center {
@@ -46,6 +50,22 @@
     ul {
       display: inline-block;
     }
+    .fa-language {
+      font-size: 28px;
+      position: relative;
+      top: 2px;
+    }
+    .toggl-view {
+      font-size: 18px !important;
+      cursor: pointer;
+      margin-right: 10px;
+      .fas {
+        &:active,
+        &:focus {
+          transform: scale(0.9);
+        }
+      }
+    }
   }
   .link {
     color: #fff;
@@ -60,9 +80,7 @@
     }
     &:active,
     &:focus {
-      button {
-        transform: scale(0.9);
-      }
+      transform: scale(0.9);
     }
   }
   &__group {
@@ -73,17 +91,21 @@
       line-height: 28px;
       display: inline-block;
       background-color: #D3182F;
-      border: 1px solid #EC4257;
+      border: 1px solid rgba(255, 255, 255, .5);
       text-align: center;
       font-size: 14px !important;
       &:hover {
         text-decoration: none;
       }
+      &:active,
+      &:focus {
+        transform: scale(1) !important;
+      }
       span {
         height: 29px;
         line-height: 29px;
-        opacity: 0.5;
         color: #fff;
+        opacity: .8;
       }
     }
     .active {
@@ -114,6 +136,28 @@
       a {
         border-radius: 0 3px 3px 0;
       }
+    }
   }
+}
+
+.logo {
+  width: 75px;
+  height: 18px;
+  display: block;
+  background: no-repeat url('/static/logo.svg') 50% 50%;
+}
+
+.load {
+  &-true {
+    .nav {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+  }
+  &-false {
+    .nav {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }

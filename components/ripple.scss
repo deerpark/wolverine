@@ -1,0 +1,64 @@
+$ripples: ripples !default;
+
+.ripples {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: .3;
+  i {
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    border: 1px solid #fff;
+    transition: 0.3s cubic-bezier(0,.98,.02,.98);
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255, .05) 65%, rgba(255,255,255,1) 100%);
+  }
+}
+@for $i from 1 through 20 {
+  .#{$ripples}__#{$i} {
+    width: $i*80px;
+    height: $i*80px;
+    margin-top: -$i*80px/2;
+    margin-left: -$i*80px/2;
+    opacity: (20-$i)*0.05;
+  }
+}
+.#{$ripples}__1 {
+  opacity: .1;
+}
+.#{$ripples}__2 {
+  opacity: .3;
+}
+
+.load {
+  &-true {
+    @for $i from 1 through 20 {
+      .#{$ripples}__#{$i} {
+        animation: blink-1 2s cubic-bezier(0,.98,.02,.98) $i*0.1s infinite both;
+      }
+    }
+  }
+  &-false {
+
+  }
+}
+
+@keyframes blink-1 {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    transform: scale(0.95)
+  }
+  25%,
+  75% {
+    opacity: 1;
+    transform: scale(1.05)
+  }
+}

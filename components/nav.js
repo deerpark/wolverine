@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import moment from 'moment'
 import Button from '@atlaskit/button'
 import './nav.scss'
 
@@ -29,20 +30,17 @@ const handleToggleType = (e) => {
   localStorage.setItem('__lz__ranking.type', type)
 }
       
-const Nav = ({ query }) => (
+const Nav = ({ query, handleClickToLoad }) => (
   <nav className="nav">
     <ul>
       <li className="nav__left">
-        <a className="link" onClick={handleToggleType}><i className="fas" /></a>
-        <Link prefetch href="/">
-          <a className="link hidden"><i className="fas fa-home" /></a>
-        </Link>
+        <a href={`/ranking/${query.lang}/${query.adult}/${moment().format('YYYYMMDD')}`} onClick={handleClickToLoad} className="link"><i className="fas fa-home" /></a>
       </li>
       <li className="nav__center">
         <ul className="nav__group">
           {links.map(
             ({ key, href, value, label, id, active }) => (
-              <li className={value === query.adult && active ? `nav__button--${id} active` : `nav__button--${id}`} key={key}>
+              <li onClick={handleClickToLoad} className={value === query.adult && active ? `nav__button--${id} active` : `nav__button--${id}`} key={key}>
                 <Link href={query.lang ? `/ranking/${query.lang}/${value}/${query.date}` : href}>
                   <a className="link"><span>{label}</span></a>
                 </Link>
@@ -54,7 +52,10 @@ const Nav = ({ query }) => (
       <li className="nav__right">
         <ul>
           <li>
-              <LanguageMenu query={query} />
+            <a className="link toggl-view" onClick={handleToggleType}><i className="fas" /></a>
+          </li>
+          <li>
+            <LanguageMenu handleClickToLoad={handleClickToLoad} query={query} />
           </li>
           {/* <li>
             <Link prefetch href="/settings">
