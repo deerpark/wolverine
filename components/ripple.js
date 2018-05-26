@@ -1,7 +1,6 @@
-import './ripple.scss'
+import '../scss/ripple.scss'
 
-const ripples = new Array(20)
-ripples.fill('ripple')
+const ripples = Array.from(Array(10).keys())
 const displayRipple = () => ripples.map((value, index) => <i className={`ripples__${index+1}`} key={index} />)
       
 const Ripple = ({ query }) => (

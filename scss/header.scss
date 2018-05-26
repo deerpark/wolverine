@@ -1,0 +1,309 @@
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  &__inner {
+    transition: 1s cubic-bezier(0,.98,.02,.98);
+    position: relative;
+    z-index: 4;
+    min-height: 50px;
+    background-color: rgba(255, 255, 255, .95);
+    border-bottom: 1px solid rgba(208,2,27, .07);
+  }
+  &__wrap {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  &__logo {
+    transition: 1s cubic-bezier(0,.98,.02,.98);
+    max-width: 100%;
+    width: 426px;
+    height: 139px;
+    margin: 0 auto;
+    margin-top: -90px;
+    position: relative;
+    overflow: hidden;
+  }
+  &__text {
+    transition: .5s cubic-bezier(0,.98,.02,.98);
+    width: 426px;
+    height: 426px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-top: -213px;
+    margin-left: -213px;
+    font-size: 0;
+    color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url('/static/logo-type-text.svg');
+    @media only screen and (max-width: 680px) {
+      background-size: 70% 70%;
+    }
+  }
+
+  html[lang="en"] &__text {
+    background-image: url('/static/logo-type-text-en.svg');
+  }
+
+  html[lang="ja"] &__text {
+    background-image: url('/static/logo-type-text-ja.svg');
+  }
+
+  .control {
+    transition: 1s cubic-bezier(0,.98,.02,.98);
+    z-index: 3;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 2%, rgba(255,255,255,.95) 100%);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+    &__inner {
+      min-height: 100px;
+      max-width: 680px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: block;
+    }
+    @media only screen and (max-width: 680px) {
+      background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 2%, rgba(255,255,255,.95) 70%);
+    }
+  }
+}
+
+.current {
+  max-width: 680px;
+  margin: 0 auto;
+  min-height: 50px;
+  display: flex;
+  font-size: 16px;
+  line-height: 28px;
+  color: #fff;
+  text-align: center;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  a {
+    color: #D0021B;
+  }
+  &__date {
+    white-space: nowrap;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a {
+      display: block;
+      padding: 0 10px;
+      font-weight: 300;
+      font-size: 26px;
+      line-height: 28px;
+      cursor: pointer;
+      .fas {
+        margin-left: 5px;
+        font-size: 8px;
+        position: relative;
+        top: -2px;
+        vertical-align: middle;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+      @media only screen and (max-width: 680px) {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+    }
+  }
+  html[lang="en"] &__year {
+    order: 3;
+  }
+  html[lang="en"] &__month {
+    order: 2;
+  }
+  html[lang="en"] &__day {
+    order: 1;
+  }
+  &__prev {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: inline-block;
+    width: 38px;
+    height: 28px;
+    line-height: 28px;
+    &:active,
+    &:focus {
+      transform: scale(0.9);
+    }
+    @media only screen and (max-width: 480px) {
+      margin-left: -10px;
+    }
+  }
+  &__next {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: inline-block;
+    width: 38px;
+    height: 28px;
+    line-height: 28px;
+    &:active,
+    &:focus {
+      transform: scale(0.9);
+    }
+    @media only screen and (max-width: 480px) {
+      margin-right: -10px;
+    }
+  }
+}
+
+[role="menu"] {
+  min-width: 80px;
+  font-size: 14px;
+}
+
+.slider {
+  height: 38px;
+  margin: 0px auto;
+  padding: 0 30.5px;
+  flex: 1 1 auto;
+  .rc-slider {
+    height: 28px;
+    padding: 0;
+    &-rail {
+      height: 28px;
+      background-color: transparent;
+    }
+    &-track {
+      height: 28px;
+      background-color: transparent;
+    }
+    &-handle {
+      transition: 1s cubic-bezier(0,.98,.02,.98);
+      width: 53px;
+      height: 28px;
+      margin-left: -26.5px;
+      border-radius: 14px;
+      background: no-repeat url('/static/slider-handle.svg');
+      border: 0;
+      box-shadow: none;
+      margin-top: 0;
+      /* &:hover,
+      &:focus,
+      &:active {
+        background: no-repeat url('/static/slider-handle-grab.svg');
+      } */
+    }
+    &-dot {
+      width: 1px;
+      height: 1px;
+      top: 14px;
+      bottom: auto;
+      border: 0;
+      background-color: #D0021B;
+      margin-left: -0.5px;
+      border-radius: 9px;
+      &:first-of-type,
+      &:last-of-type,
+      /* &:nth-child(10n+1) */ {
+        width: 5px;
+        height: 5px;
+        margin-left: -2.5px;
+        top: 11.5px;
+      }
+    }
+  }
+  @media only screen and (max-width: 680px) {
+    float: none;
+  }
+}
+
+.rc-slider-tooltip {
+  width: 128px;
+  height: 38px;
+  background: no-repeat url('/static/slider-tooltip.svg') center top;
+}
+
+.rc-slider-tooltip-placement-top {
+  padding: 0;
+}
+
+.rc-slider-tooltip-inner {
+  width: 128px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.rc-slider-tooltip-arrow {
+  display: none;
+}
+
+.rc-slider-tooltip-hidden {
+  /* display: block; */
+}
+
+.load {
+  &-true {
+    .header__text {
+      animation: wobble-hor-bottom 0.8s both;
+    }
+    .header__logo {
+      height: 121px;
+      opacity: 1;
+    }
+    .header__inner {
+      transform: translateY(-101px);
+      opacity: 0;
+    }
+    .control {
+      transform: translateY(-101px);
+      opacity: 0;
+    }
+  }
+  &-false {
+    .header__logo {
+      height: 0;
+      opacity: 0;
+    }
+    .header__inner,
+    .control {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
+}

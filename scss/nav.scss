@@ -1,8 +1,11 @@
 .nav {
   transition: 1s cubic-bezier(0,.98,.02,.98);
-  padding: 10px;
   position: relative;
+  padding: 10px;
   z-index: 3;
+  @media only screen and (max-width: 680px) {
+    padding: 10px;
+  }
   ul {
     margin: 0;
     padding: 0;
@@ -34,6 +37,24 @@
       font-size: 18px !important;
       cursor: pointer;
     }
+    .btn-home {
+      width: 40px;
+      display: inline-block;
+      text-align: center;
+    }
+    /* .btn-home {
+      width: 50px;
+      height: 51px;
+      margin: -11px 0 -11px 0;
+      display: inline-block;
+      text-align: center;
+      font-size: 0 !important;
+      background: #D0021B no-repeat url('/static/lzlogo_60.png') 50% 50%;
+      background-size: 30px auto;
+      @media only screen and (max-width: 680px) {
+        margin-left: -10px;
+      }
+    } */
   }
   &__center {
     order: 2;
@@ -49,6 +70,10 @@
     justify-content: flex-end;
     ul {
       display: inline-block;
+    }
+    .fas {
+      color: #666;
+      display: none;
     }
     .fa-language {
       font-size: 28px;
@@ -68,7 +93,7 @@
     }
   }
   .link {
-    color: #fff;
+    color: #D3182F;
     font-size: 24px;
     button {
       height: 31px;
@@ -76,7 +101,7 @@
     span {
       height: 31px;
       line-height: 31px;
-      color: #fff;
+      color: #D3182F;
     }
     &:active,
     &:focus {
@@ -87,13 +112,16 @@
     white-space: nowrap;
     a {
       min-width: 70px;
-      height: 29px;
+      height: 31px;
       line-height: 28px;
+      padding: 0 5px;
       display: inline-block;
-      background-color: #D3182F;
-      border: 1px solid rgba(255, 255, 255, .5);
+      background-color: transparent;
+      border: 1px solid #D3182F;
+      box-sizing: border-box;
       text-align: center;
       font-size: 14px !important;
+      cursor: pointer;
       &:hover {
         text-decoration: none;
       }
@@ -104,18 +132,18 @@
       span {
         height: 29px;
         line-height: 29px;
-        color: #fff;
+        color: #D3182F;
         opacity: .8;
       }
     }
     .active {
       a {
-        background-color: #fff;
-        color: #D3182F;
-        border-color: #fff;
+        background-color: #D3182F;
+        color: #fff;
+        border-color: #D3182F;
         span {
           opacity: 1;
-          color: #D3182F;
+          color: #fff;
         }
       }
     }
@@ -140,11 +168,45 @@
   }
 }
 
-.logo {
-  width: 75px;
-  height: 18px;
-  display: block;
-  background: no-repeat url('/static/logo.svg') 50% 50%;
+.flag {
+  width: 40px;
+  height: 28px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: contain;
+  vertical-align: middle;
+  filter:grayscale(50%);
+  opacity: .8;
+}
+
+span .flag {
+  width: 50px;
+  margin-right: 5px;
+  vertical-align: middle;
+  filter:grayscale(0%);
+  opacity: 1;
+}
+
+html[lang="ko"] .flag  {
+  background-image: url('/static/flag-south-korea.svg');
+}
+.flag.ko-KR {
+  background-image: url('/static/flag-south-korea.svg') !important;
+}
+
+html[lang="ja"] .flag  {
+  background-image: url('/static/flag-japan.svg');
+}
+.flag.ja-JP {
+  background-image: url('/static/flag-japan.svg') !important;
+}
+
+html[lang="en"] .flag {
+  background-image: url('/static/flag-united-states.svg');
+}
+.flag.en-US {
+  background-image: url('/static/flag-united-states.svg') !important;
 }
 
 .load {

@@ -55,19 +55,19 @@ table {
   margin: 12px 0 0 0;
 }
 a {
-  color: #0052CC;
+  color: #D0021B;
   text-decoration: none;
 }
 a:hover {
-  color: #0065FF;
+  color: rgb(223, 39, 61);
   text-decoration: underline;
 }
 a:active {
-  color: #0747A6;
+  color: #D0021B;
 }
 a:focus {
-  outline: 2px solid #4C9AFF;
-  outline-offset: 2px;
+  outline: 2px solid rgb(223, 39, 61);
+  outline-offset: 0;
 }
 h1 {
   font-size: 2.07142857em;

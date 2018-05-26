@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import util from '../shared/util'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -6,32 +7,21 @@ export default class MyDocument extends Document {
     return { title: 'Wolverine', description: 'Lezhin Lanking', ...initialProps, query : ctx.query }
   }
 
-  getLangCode = (lang) => {
-    const langCode = lang ? lang : 'ko-KR'
-    return langCode.slice(0, 2)
-  }
-
-  getJpKrCode = (lang) => {
-    const langCode = lang && lang !== 'en-US' ? lang : 'ko-KR'
-    return langCode.slice(3, 5).toLowerCase()
-  }
-
   render() {
     return (
-      <html lang={this.getLangCode(this.props.query.lang)}>
+      <html lang={util.getLanguageCode(this.props.query.locale)}>
         <Head>
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossOrigin="anonymous" />
+          <link rel="stylesheet" href={`https://fonts.googleapis.com/earlyaccess/notosans${util.getCountryCode(this.props.query.locale, 'en-US')}.css`} />
+          <link rel="stylesheet" href="/static/stylesheets/reset.css" />
+          <link rel="stylesheet" href="/static/stylesheets/slider.css" />
+          <link rel="stylesheet" href="/_next/static/style.css" />
+          <link rel="icon" href="/static/favicon.ico" />
+          <link rel="icon" sizes="192x192" href="https://cdn.lezhin.com/assets/favicon/192x192.png" />
+          <link rel="apple-touch-icon-precomposed" href="//cdn.lezhin.com/files/assets/page/image/ico-ios-kr.png" />
           <title>Lezhin Ranking</title>
           <meta name="description" content="Check out the past Lezhin comics rankings!" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />
-          <link rel="apple-touch-icon" href="/static/touch-icon.png" />
-          <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
-          <link rel="icon" href="/static/favicon.ico" />
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossOrigin="anonymous" />
-          <link rel="stylesheet" href={`https://fonts.googleapis.com/earlyaccess/notosans${this.getJpKrCode(this.props.query.lang)}.css`} />
-          <link rel="stylesheet" href="/static/reset.css" />
-          <link rel="stylesheet" href="/static/slider.css" />
-          <link rel="stylesheet" href="/_next/static/style.css" />
       </Head>
 
       <body>

@@ -10,11 +10,11 @@ app.prepare()
   .then(() => {
     const server = express()
 
-    server.get('/ranking/:lang/:adult/:date', (req, res) => {
+    server.get('/ranking/:locale/:ratings/:date', (req, res) => {
       return app.render(req, res, '/ranking', {
-        lang: req.params.lang || 'ko-KR',
-        adult: req.params.adult || 'kid',
-        date: req.params.date || '20170630'
+        locale: req.params.locale,
+        ratings: req.params.ratings,
+        date: req.params.date
       })
     })
 
