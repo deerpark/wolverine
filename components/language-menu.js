@@ -6,7 +6,7 @@ const getLocaleItems = (query, handleClickToLoad) => {
   const _query = _localStorageQuery ? _localStorageQuery : query
   const localeItems = LOCALES.map((locale, index) => {
     const isDisabled = query.locale === locale.value ? 'isDisabled' : ''
-    return <DropdownItem className={isDisabled} onClick={handleClickToLoad} href={`/ranking/${locale.value}/${_query.ratings}/${_query.date}`} key={index}><i className={`flag ${locale.value}`} />{locale.label}</DropdownItem>
+    return <DropdownItem className={isDisabled} onClick={() => handleClickToLoad(locale.value)} href={`/ranking/${locale.value}/${_query.ratings}/${_query.date}`} key={index}><i className={`flag ${locale.value}`} />{locale.label}</DropdownItem>
   })
   return localeItems
 };

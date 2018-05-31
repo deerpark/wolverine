@@ -26,8 +26,8 @@ const Nav = ({ query, handleClickToLoad }) => (
         <ul className="nav__group">
           {RATINGLINKS.map(
             ({ ratings, label, id, active }, index) => (
-              <li onClick={handleClickToLoad} className={ratings === query.ratings && active ? `nav__button--${id} active` : `nav__button--${id}`} key={index}>
-                <a className="link" data-ratings={ratings} onClick={handleChangeRating}><span>{label[query.locale]}</span></a>
+              <li /* onClick={handleClickToLoad} */ className={ratings === query.ratings && active ? `nav__button--${id} active` : `nav__button--${id}`} key={index}>
+                <a className="link" data-ratings={ratings} /* onClick={handleChangeRating} */><span>{label[query.locale]}</span></a>
               </li>
             )
           )}

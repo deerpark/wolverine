@@ -1,10 +1,12 @@
+import moment from 'moment'
+
 const DEFAULT_VALUES = {
-  apiUrl: 'top20-dot-lezhincomix-novel.appspot.com/v2',
+  apiUrl: 'lezhincomix-api.appspot.com/v2',
   cdnUrl: 'cdn.lezhin.com/v2',
   query: {
     locale: 'ko-KR',
     ratings: 'kid',
-    date: '20180523'
+    date: moment().format('YYMMDD')
   },
   now: Date.now()
 };

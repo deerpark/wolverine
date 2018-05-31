@@ -121,7 +121,7 @@
       box-sizing: border-box;
       text-align: center;
       font-size: 14px !important;
-      cursor: pointer;
+      cursor: default;
       &:hover {
         text-decoration: none;
       }
@@ -151,7 +151,7 @@
   &__button {
     &--1 {
       a {
-        border-radius: 3px 0 0 3px;
+        border-radius: 3px;
         margin: 0 -1px;
       }
     }

@@ -24,20 +24,17 @@ const preCacheImages = new Promise((resolve) => {
   newCache[newCache.length - 1].onload = () => resolve();
 })
 
-const date = moment().get('date') - 5 < 1 ? 1 : moment().get('date') - 5
-const stringDate = `${moment().get('year')}${util.numToStringWithZero(moment().get('month') + 1)}${util.numToStringWithZero(date)}`
-
 const query = localStorage.query ? JSON.parse(localStorage.query) : {
   locale: config.get('query').locale,
   ratings: config.get('query').ratings,
-  date: stringDate
+  date: moment().format('YYYYMMDD')
 }
 
 class Index extends React.Component {
 
   componentDidMount() {
     preCacheImages.then(() => {
-      Router.push(`/ranking/${query.locale}/${query.ratings}/${stringDate}`)
+      Router.push(`/ranking/${query.locale}/${query.ratings}/${moment().format('YYYYMMDD')}`)
     })
   }
 
