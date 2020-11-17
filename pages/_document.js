@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
     ctx.query.ratings = ctx.query?.ratings || config.get("query").ratings;
     ctx.query.date = ctx.query?.date || moment().format("YYYYMMDD");
     return {
-      title: "Wolverine",
+      title: "Lezhin Lanking",
       description: "Lezhin Lanking",
       ...initialProps,
       query: ctx.query,

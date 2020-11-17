@@ -36,7 +36,7 @@ class Index extends React.Component {
   componentDidMount() {
     preCacheImages.then(() => {
       Router.push(
-        `/ranking/${query.locale}/${query.ratings}/${moment().format(
+        `/${query.locale}/ranking/${query.ratings}/${moment().format(
           "YYYYMMDD"
         )}`
       );

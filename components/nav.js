@@ -13,7 +13,7 @@ const handleChangeRating = (e) => {
   const localStorageQuery = JSON.parse(localStorage.query);
   const _query = localStorageQuery ? localStorageQuery : this.props.query;
   Router.push(
-    `/ranking/${_query.locale}/${e.currentTarget.dataset.ratings}/${_query.date}`
+    `/${_query.locale}/ranking/${e.currentTarget.dataset.ratings}/${_query.date}`
   );
 };
 
