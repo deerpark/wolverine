@@ -1,12 +1,9 @@
-import '../scss/ripple.scss'
+const ripples = Array.from(Array(10).keys());
+const displayRipple = () =>
+  ripples.map((value, index) => (
+    <i className={`ripples__${index + 1}`} key={index} />
+  ));
 
-const ripples = Array.from(Array(10).keys())
-const displayRipple = () => ripples.map((value, index) => <i className={`ripples__${index+1}`} key={index} />)
-      
-const Ripple = ({ query }) => (
-  <div className="ripples">
-    {displayRipple()}
-  </div>
-)
+const Ripple = ({ query }) => <div className="ripples">{displayRipple()}</div>;
 
-export default Ripple
+export default Ripple;

@@ -8,9 +8,9 @@ export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
     ctx.query = ctx.query || {};
-    ctx.query.locale = ctx.query.locale || config.get("query").locale;
-    ctx.query.ratings = ctx.query.ratings || config.get("query").ratings;
-    ctx.query.date = ctx.query.date || moment().format("YYYYMMDD");
+    ctx.query.locale = ctx.query?.locale || config.get("query").locale;
+    ctx.query.ratings = ctx.query?.ratings || config.get("query").ratings;
+    ctx.query.date = ctx.query?.date || moment().format("YYYYMMDD");
     return {
       title: "Wolverine",
       description: "Lezhin Lanking",
@@ -37,10 +37,9 @@ export default class MyDocument extends Document {
               "en-US"
             )}.css`}
           />
-          <link rel="stylesheet" href="/static/stylesheets/reset.css" />
-          <link rel="stylesheet" href="/static/stylesheets/slider.css" />
-          <link rel="stylesheet" href="/_next/static/style.css" />
-          <link rel="icon" href="/static/favicon.ico" />
+          <link rel="stylesheet" href="/stylesheets/reset.css" />
+          <link rel="stylesheet" href="/stylesheets/slider.css" />
+          <link rel="icon" href="/favicon.ico" />
           <link
             rel="icon"
             sizes="192x192"
@@ -88,7 +87,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content={`https://rank.lezhin.com/static/sns-image-${locale}.png`}
+            content={`https://rank.lezhin.com/sns-image-${locale}.png`}
           />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="600" />
@@ -102,7 +101,7 @@ export default class MyDocument extends Document {
 
           <meta
             name="twitter:image"
-            content={`https://rank.lezhin.com/static/sns-image-${locale}.png`}
+            content={`https://rank.lezhin.com/sns-image-${locale}.png`}
           />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@LezhinComics" />

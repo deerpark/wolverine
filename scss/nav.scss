@@ -1,5 +1,5 @@
 .nav {
-  transition: 1s cubic-bezier(0,.98,.02,.98);
+  transition: 1s cubic-bezier(0, 0.98, 0.02, 0.98);
   position: relative;
   padding: 10px;
   z-index: 3;
@@ -33,7 +33,7 @@
   &__left {
     order: 1;
     flex: 1 1 150px;
-    a{
+    a {
       font-size: 18px !important;
       cursor: pointer;
     }
@@ -49,7 +49,7 @@
       display: inline-block;
       text-align: center;
       font-size: 0 !important;
-      background: #D0021B no-repeat url('/static/lzlogo_60.png') 50% 50%;
+      background: #D0021B no-repeat url('/lzlogo_60.png') 50% 50%;
       background-size: 30px auto;
       @media only screen and (max-width: 680px) {
         margin-left: -10px;
@@ -93,7 +93,7 @@
     }
   }
   .link {
-    color: #D3182F;
+    color: #d3182f;
     font-size: 24px;
     button {
       height: 31px;
@@ -101,7 +101,7 @@
     span {
       height: 31px;
       line-height: 31px;
-      color: #D3182F;
+      color: #d3182f;
     }
     &:active,
     &:focus {
@@ -117,7 +117,7 @@
       padding: 0 5px;
       display: inline-block;
       background-color: transparent;
-      border: 1px solid #D3182F;
+      border: 1px solid #d3182f;
       box-sizing: border-box;
       text-align: center;
       font-size: 14px !important;
@@ -132,15 +132,15 @@
       span {
         height: 29px;
         line-height: 29px;
-        color: #D3182F;
-        opacity: .8;
+        color: #d3182f;
+        opacity: 0.8;
       }
     }
     .active {
       a {
-        background-color: #D3182F;
+        background-color: #d3182f;
         color: #fff;
-        border-color: #D3182F;
+        border-color: #d3182f;
         span {
           opacity: 1;
           color: #fff;
@@ -156,7 +156,7 @@
       }
     }
     &--2 {
-      a{
+      a {
         margin: 0 -1px;
       }
     }
@@ -176,37 +176,37 @@
   background-position: 50% 0;
   background-size: contain;
   vertical-align: middle;
-  filter:grayscale(50%);
-  opacity: .8;
+  filter: grayscale(50%);
+  opacity: 0.8;
 }
 
 span .flag {
   width: 50px;
   margin-right: 5px;
   vertical-align: middle;
-  filter:grayscale(0%);
+  filter: grayscale(0%);
   opacity: 1;
 }
 
-html[lang="ko"] .flag  {
-  background-image: url('/static/flag-south-korea.svg');
+html[lang="ko"] .flag {
+  background-image: url("/flag-south-korea.svg");
 }
 .flag.ko-KR {
-  background-image: url('/static/flag-south-korea.svg') !important;
+  background-image: url("/flag-south-korea.svg") !important;
 }
 
-html[lang="ja"] .flag  {
-  background-image: url('/static/flag-japan.svg');
+html[lang="ja"] .flag {
+  background-image: url("/flag-japan.svg");
 }
 .flag.ja-JP {
-  background-image: url('/static/flag-japan.svg') !important;
+  background-image: url("/flag-japan.svg") !important;
 }
 
 html[lang="en"] .flag {
-  background-image: url('/static/flag-united-states.svg');
+  background-image: url("/flag-united-states.svg");
 }
 .flag.en-US {
-  background-image: url('/static/flag-united-states.svg') !important;
+  background-image: url("/flag-united-states.svg") !important;
 }
 
 .load {

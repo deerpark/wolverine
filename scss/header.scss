@@ -1,24 +1,23 @@
-
-.header{
+.header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 5;
   &__inner {
-    transition: 1s cubic-bezier(0,.98,.02,.98);
+    transition: 1s cubic-bezier(0, 0.98, 0.02, 0.98);
     position: relative;
     z-index: 4;
     min-height: 50px;
-    background-color: rgba(255, 255, 255, .95);
-    border-bottom: 1px solid rgba(208,2,27, .07);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(208, 2, 27, 0.07);
   }
   &__wrap {
     max-width: 680px;
     margin: 0 auto;
   }
   &__logo {
-    transition: 1s cubic-bezier(0,.98,.02,.98);
+    transition: 1s cubic-bezier(0, 0.98, 0.02, 0.98);
     max-width: 100%;
     width: 426px;
     height: 139px;
@@ -28,7 +27,7 @@
     overflow: hidden;
   }
   &__text {
-    transition: .5s cubic-bezier(0,.98,.02,.98);
+    transition: 0.5s cubic-bezier(0, 0.98, 0.02, 0.98);
     width: 426px;
     height: 426px;
     position: absolute;
@@ -42,26 +41,31 @@
     color: transparent;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-image: url('/static/logo-type-text.svg');
+    background-image: url("/logo-type-text.svg");
     @media only screen and (max-width: 680px) {
       background-size: 70% 70%;
     }
   }
 
   html[lang="en"] &__text {
-    background-image: url('/static/logo-type-text-en.svg');
+    background-image: url("/logo-type-text-en.svg");
   }
 
   html[lang="ja"] &__text {
-    background-image: url('/static/logo-type-text-ja.svg');
+    background-image: url("/logo-type-text-ja.svg");
   }
 
   .control {
-    transition: 1s cubic-bezier(0,.98,.02,.98);
+    transition: 1s cubic-bezier(0, 0.98, 0.02, 0.98);
     z-index: 3;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 2%, rgba(255,255,255,.95) 100%);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.7) 2%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     &__inner {
       min-height: 100px;
       max-width: 680px;
@@ -71,7 +75,12 @@
       display: block;
     }
     @media only screen and (max-width: 680px) {
-      background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 2%, rgba(255,255,255,.95) 70%);
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.7) 2%,
+        rgba(255, 255, 255, 0.95) 70%
+      );
     }
   }
 }
@@ -89,7 +98,7 @@
   justify-content: center;
   align-items: center;
   a {
-    color: #D0021B;
+    color: #d0021b;
   }
   &__date {
     white-space: nowrap;
@@ -185,19 +194,19 @@
       background-color: transparent;
     }
     &-handle {
-      transition: 1s cubic-bezier(0,.98,.02,.98);
+      transition: 1s cubic-bezier(0, 0.98, 0.02, 0.98);
       width: 53px;
       height: 28px;
       margin-left: -26.5px;
       border-radius: 14px;
-      background: no-repeat url('/static/slider-handle.svg');
+      background: no-repeat url("/slider-handle.svg");
       border: 0;
       box-shadow: none;
       margin-top: 0;
       /* &:hover,
       &:focus,
       &:active {
-        background: no-repeat url('/static/slider-handle-grab.svg');
+        background: no-repeat url('/slider-handle-grab.svg');
       } */
     }
     &-dot {
@@ -206,12 +215,12 @@
       top: 14px;
       bottom: auto;
       border: 0;
-      background-color: #D0021B;
+      background-color: #d0021b;
       margin-left: -0.5px;
       border-radius: 9px;
       opacity: 0.5;
       &:first-of-type,
-      &:last-of-type,
+      &:last-of-type
       /* &:nth-child(10n+1) */ {
         width: 5px;
         height: 5px;
@@ -229,7 +238,7 @@
 .rc-slider-tooltip {
   width: 128px;
   height: 38px;
-  background: no-repeat url('/static/slider-tooltip.svg') center top;
+  background: no-repeat url("/slider-tooltip.svg") center top;
 }
 
 .rc-slider-tooltip-placement-top {
@@ -252,9 +261,9 @@
   display: none;
 }
 
-.rc-slider-tooltip-hidden {
-  /* display: block; */
-}
+/* .rc-slider-tooltip-hidden {
+  display: block;
+} */
 
 .load {
   &-true {
